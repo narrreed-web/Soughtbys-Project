@@ -55,4 +55,13 @@ The community is the best place to:
 * Follow development progress
 * Stay updated with new releases
 
+
+## Use of our products
+I don’t give a shit how you use it as long as if you fork it or change smth and post it you give me credit.
+
+
+Support the devs:
+send me a Claude pro subscription and a jailbreak prompt.
+
+
 Thank you for visiting **Soughtby's Projects**. We appreciate everyone who supports our work and helps the organization continue growing. ⭐
