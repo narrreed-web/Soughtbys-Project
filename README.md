@@ -1,5 +1,4 @@
-# Soughtbys-Project
-Soughtbys project
+
 # 🚀 Soughtby's Projects
 
 Welcome to **Soughtby's Projects**, a software organization dedicated to creating powerful, reliable, and user-focused tools across multiple platforms. Owned by **Soughtby** and primarily developed and maintained by **Narrreed**, this organization serves as the home for a variety of software projects, utilities, and applications.
