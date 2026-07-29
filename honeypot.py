@@ -325,6 +325,103 @@ if __name__ == "__main__":
             "DISCORD_BOT_TOKEN not found.\n"
             "Create a .env file next to this script containing:\n"
             "    DISCORD_BOT_TOKEN=your-token-here\n"
-            "See the setup instructions in README.md / .env.example."
+            "See the setup instructions in Below for help. "
         )
     bot.run(TOKEN)
+
+"""
+# Discord Honeypot Bot
+
+Catches compromised/self-bot accounts: set up a trap channel that
+legitimate members never post in, and anything that speaks in it gets
+automatically banned, softbanned, or kicked.
+
+This repo is just two files: `bot.py` and your own `.env` (which you
+create yourself — see below).
+
+## 1. Create your bot on Discord
+
+1. Go to https://discord.com/developers/applications
+2. **New Application** → give it a name → **Create**
+3. Left sidebar → **Bot** → **Add Bot**
+4. Under **Privileged Gateway Intents**, turn ON **Message Content Intent**
+   (and Server Members Intent, recommended)
+5. Click **Reset Token** → **Copy** — this is your bot token. Keep it
+   secret; anyone with it can control your bot.
+
+## 2. Invite the bot to your server
+
+1. Left sidebar → **OAuth2** → **URL Generator**
+2. Under **Scopes**, check `bot`
+3. Under **Bot Permissions**, check: `Ban Members`, `Kick Members`,
+   `Manage Messages`, `View Channels`, `Send Messages`
+4. Copy the generated URL at the bottom, open it in your browser, and
+   add the bot to your server
+
+## 3. Make your own `.env` file
+
+This is the part that keeps your token out of the code (and out of
+GitHub). In the same folder as `bot.py`:
+
+1. Create a new file named exactly `.env` (yes, starting with a dot,
+   no other extension)
+2. Open it in any text editor and add one line:
+   ```
+   DISCORD_BOT_TOKEN=paste_your_bot_token_here
+   ```
+3. Save it. That's it — no quotes, no spaces around the `=`.
+
+A `.env.example` is included as a template — copy it to `.env` and fill
+in your real token:
+
+```bash
+cp .env.example .env
+```
+
+Then edit `.env` and replace `paste_your_bot_token_here` with the token
+you copied in step 1.
+
+**If you're pushing this to GitHub**, add a `.gitignore` file containing:
+```
+.env
+data.json
+```
+so your token and per-server data never get committed.
+
+## 4. Install dependencies and run
+
+```bash
+pip install discord.py python-dotenv
+python bot.py
+```
+
+If it starts successfully you'll see `Logged in as YourBotName` in the
+terminal.
+
+## Usage
+
+| Command | Description |
+|---|---|
+| `!config channel #trap-channel` | Set which channel is the honeypot |
+| `!config action ban\|softban\|kick` | Set what happens when triggered |
+| `!config log #mod-log` | (optional) channel to log catches to |
+| `!config show` | Show current config + counters |
+| `!panel` | Post the warning panel (Components V2) in the current channel |
+
+All `!config`/`!panel` commands require **Manage Server** permission.
+
+- **ban** — permanently bans, deleting the last day of messages
+- **softban** — bans (purging messages) then immediately unbans
+- **kick** — just kicks, no message purge
+
+Counters persist automatically in `data.json`, created next to `bot.py`
+the first time the bot runs.
+
+## Notes
+
+- `!panel` uses Discord's Components V2 layout. Needs `discord.py>=2.6`;
+  if your installed version is older it automatically falls back to a
+  normal embed.
+- The bot doesn't set up the "bait" (fake leaked-perms message, decoy
+  channel name, etc.) — that's on you. It just handles the trap trigger.
+    """
